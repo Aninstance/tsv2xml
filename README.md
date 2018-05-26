@@ -1,18 +1,19 @@
 # tsv2xml
 
-Command line tool to map tab separated files into xml output.
+Command line tool to map tab separated values files into xml output.
 
 ```bash
 Usage: tsv2xml [OPTIONS] FILEARGS[:NODENAME]
 
 Options:
-  -l, --limit INTEGER  Number of lines included of .tsv/.tab files.
+  -l, --limit INTEGER  Number of lines included of each .tsv/.tab file.
   --help               Show this message and exit.
 ```
 
 ## Dependencies
 
 * Python 3.x
+* Pip
 
 ## Installation
 

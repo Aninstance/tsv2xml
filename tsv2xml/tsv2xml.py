@@ -30,7 +30,7 @@ def node(node_name: str, depth: int, wrapping=False):
 
 
 @click.command()
-@click.option('--limit', '-l', type=int, help='Number of lines included of .tsv/.tab files.')
+@click.option('--limit', '-l', type=int, help='Number of lines included of each .tsv/.tab file.')
 @click.argument('fileargs', nargs=-1, metavar='FILEARGS[:NODENAME]')
 def cli(fileargs, limit):
     print('<?xml version="1.0" encoding="UTF-8"?>')
