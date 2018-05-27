@@ -10,6 +10,9 @@ Options:
   --help               Show this message and exit.
 ```
 
+First line of each file is expected to be a header, 
+the tab separated names of columns.
+
 ## Dependencies
 
 * Python 3.x
