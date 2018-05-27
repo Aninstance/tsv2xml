@@ -40,11 +40,9 @@ def cli(fileargs, limit):
             with node(inptfile.nodename, 1):
                 with open(inptfile.filename) as file:
                     headers = file.readline().split('\t')
-                    if limit:
-                        records = zip(range(limit), file)
-                    else:
-                        records = file
-                    for _, record in records:
+                    for index, record in enumerate(file):
+                        if limit and index == limit:
+                            break
                         with node('record', 2):
                             for idx, col in enumerate(record.split('\t')):
                                 with node(headers[idx].strip(), 3, wrapping=True):
