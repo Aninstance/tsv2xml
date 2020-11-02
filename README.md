@@ -7,6 +7,8 @@ Usage: tsv2xml [OPTIONS] FILEARGS[:NODENAME]
 
 Options:
   -l, --limit INTEGER  Number of lines included of each .tsv/.tab file.
+  -s, --skip INTEGER   Number of lines to skip before starting, for each
+                       .tsv/.tab file.
   --help               Show this message and exit.
 ```
 
