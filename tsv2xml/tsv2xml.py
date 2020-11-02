@@ -3,7 +3,6 @@ from contextlib import contextmanager
 from xml.sax.saxutils import escape
 import click
 
-
 class InputFile:
 
     def __init__(self, inpt: str):
@@ -13,7 +12,7 @@ class InputFile:
             self.nodename = inpt[1]
         else:
             filename_w_ext = os.path.basename(inpt[0])
-            nodename, fileext = os.path.splitext(filename_w_ext)
+            nodename, file_ext = os.path.splitext(filename_w_ext)
             self.nodename = nodename
 
 
@@ -31,8 +30,9 @@ def node(node_name: str, depth: int, wrapping=False):
 
 @click.command()
 @click.option('--limit', '-l', type=int, help='Number of lines included of each .tsv/.tab file.')
+@click.option('--skip', '-s', type=int, help='Number of lines to skip before starting, for each .tsv/.tab file.')
 @click.argument('fileargs', nargs=-1, metavar='FILEARGS[:NODENAME]')
-def cli(fileargs, limit):
+def cli(fileargs, limit, skip=0):
     print('<?xml version="1.0" encoding="UTF-8"?>')
     with node('root', 0):
         for filearg in fileargs:
@@ -41,9 +41,10 @@ def cli(fileargs, limit):
                 with open(inptfile.filename) as file:
                     headers = file.readline().split('\t')
                     for index, record in enumerate(file):
-                        if limit and index == limit:
-                            break
-                        with node('record', 2):
-                            for idx, col in enumerate(record.split('\t')):
-                                with node(headers[idx].strip(), 3, wrapping=True):
-                                    print(escape(col.strip()), end='')
+                        if index >= skip:
+                            if index >= limit + skip:
+                                break
+                            with node('record', 2):
+                                for idx, col in enumerate(record.split('\t')):
+                                    with node(headers[idx].strip(), 3, wrapping=True):
+                                        print(escape(col.strip()), end='')
