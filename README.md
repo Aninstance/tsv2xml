@@ -24,7 +24,7 @@ the tab separated names of columns.
 
 1. Clone project with git:
     ```bash
-    git clone https://github.com/mglezsosa/tsv2xml.git
+    git clone https://github.com/Aninstance/tsv2xml.git
     ```
 
 2. Install:
